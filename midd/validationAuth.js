@@ -1,16 +1,16 @@
-// const { getKeys } = require('../data/keys.js');
+const validatio = (token) => {
+  const val1 = token ? token.length === 16 : false;
+  return val1;
+};
 
 const validationAuth = async (req, res, next) => {
     const token = req.headers.authorization;
-    // const fi = await getKeys();
-    const val1 = token !== undefined ? token.length === 16 : false;
-    if (token && val1) {
+    if (token && validatio(token)) {
       next();
     } else {
       res.status(401).json({ message: token ? 'Token inválido'
         : 'Token não encontrado',
     });
-    //   res.status(401).json({ message: 'Token não encontrado' });
     }
 };
   
