@@ -23,8 +23,6 @@ const validationCredentials = async (req, res, next) => {
   const validation = credentials.every((el) => el in body);
 
   const resposta = message(body);
-
-  // validation = resposta !== 'O "password" deve ter pelo menos 6 caracteres';
   
   if (validation && aux) {
     next();
