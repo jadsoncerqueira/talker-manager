@@ -1,6 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const { getData, setData } = require('../data/index.js');
+const { getData, setData, upData } = require('../data/index.js');
 // const { setKey } = require('../data/keys.js');
 const { randomToken } = require('./helpers/index.js');
 const {
@@ -60,6 +60,24 @@ app.post(
     response.status(HTTP_OK_STATUS + 1).json(aux);
   },
 );
+
+app.put('/talker/:id',
+validationId,
+validationAuth,
+validationNameCad,
+validationAgeCad,
+validationATalkCad,
+validationRateCad,
+validationWatCad,
+  async (request, response) => {
+    const { id } = request.params;
+    const { body } = request;
+    const res = await getData();
+    const all = res.filter((el) => el.id !== Number(id));
+    const newData = [...all, { id: Number(id), ...body }];
+    await upData(newData);
+    response.status(HTTP_OK_STATUS).json({ id: Number(id), ...body });
+});
 
 app.listen(PORT, () => {
   console.log('Online');

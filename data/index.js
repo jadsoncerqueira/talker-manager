@@ -21,7 +21,16 @@ const setData = async (newPerson) => {
   }
 };
 
+const upData = async (newData) => {
+  try {
+    await fs.writeFile(path.resolve(__dirname, caminho), JSON.stringify(newData));
+  } catch (error) {
+    return [];   
+  }
+};
+
 module.exports = {
   getData,
   setData,
+  upData,
 };
