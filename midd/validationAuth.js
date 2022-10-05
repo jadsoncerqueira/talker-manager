@@ -3,7 +3,7 @@
 const validationAuth = async (req, res, next) => {
     const token = req.headers.authorization;
     // const fi = await getKeys();
-    const val1 = token.length === 16;
+    const val1 = token !== undefined ? token.length === 16 : false;
     if (token && val1) {
       next();
     } else {

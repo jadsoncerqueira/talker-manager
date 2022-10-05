@@ -46,12 +46,12 @@ app.post('/login', validationCredentials, validateEmail, (__request, response) =
 
 app.post(
   '/talker',
+  validationAuth,
   validationNameCad,
   validationAgeCad,
   validationATalkCad,
   validationRateCad,
   validationWatCad,
-  validationAuth,
   async (request, response) => {
     const { body } = request;
     const data = await getData();
