@@ -1,4 +1,4 @@
-const getData = require('../data/index.js');
+const { getData } = require('../data/index.js');
 
 const validationId = async (req, res, next) => {
   const data = await getData();
