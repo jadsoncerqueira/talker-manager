@@ -79,6 +79,17 @@ validationWatCad,
     response.status(HTTP_OK_STATUS).json({ id: Number(id), ...body });
 });
 
+app.delete('/talker/:id',
+validationId,
+validationAuth,
+  async (request, response) => {
+    const { id } = request.params;
+    const data = await getData();
+    const newData = data.filter((el) => el.id !== Number(id));
+    await upData(newData);
+    response.status(HTTP_OK_STATUS + 4).json({ message: 'ok' });
+});
+
 app.listen(PORT, () => {
   console.log('Online');
 });
