@@ -30,7 +30,7 @@ const validationCredentials = async (req, res, next) => {
     next();
   } else {
     aux = true;
-    res.status(404).json({ message: resposta });
+    res.status(400).json({ message: resposta });
   }
 };
 
