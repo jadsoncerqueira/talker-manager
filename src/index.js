@@ -1,7 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const { getData, setData, upData } = require('../data/index.js');
-// const { setKey } = require('../data/keys.js');
+const talkerRoutes = require('./rotas/talker.js');
 const { randomToken } = require('./helpers/index.js');
 const {
   validationId,
@@ -17,6 +17,8 @@ const {
 
 const app = express();
 app.use(bodyParser.json());
+
+app.use('/talker', talkerRoutes);
 
 const HTTP_OK_STATUS = 200;
 const PORT = '3000';
@@ -93,3 +95,5 @@ validationAuth,
 app.listen(PORT, () => {
   console.log('Online');
 });
+
+module.exports = app;
